@@ -1,0 +1,37 @@
+<script>
+  const ondeEstaWally = (elementos) => {
+    let firstElement = elementos[0][0];
+    let countFirstElement = 0;
+    let possivelPosicaoWally;
+    for(var i = 0; i < elementos.length; i++) {
+      for(var j = 0; j < elementos[i].length; j++) {
+        if( firstElement == elementos[i][j] ) {
+          countFirstElement++;
+          if( possivelPosicaoWally ) {
+            alert(`Posicao do wally ${i}, ${j}`);
+            return true;
+          }
+        } else {
+          if( possivelPosicaoWally ) {
+            alert(`Posicao do wally 0, 0`);
+            return true;
+          }
+          if( countFirstElement > 1 ) {
+            alert(`Posicao do wally ${i}, ${j}`);
+            return true;
+          } else {
+            possivelPosicaoWally = [i,j];
+          }
+        }
+      }
+    }
+  }
+  ondeEstaWally([
+  ["O", "O", "O", "O"],
+  ["O", "O", "O", "O"],
+  ["O", "O", "O", "O"],
+  ["O", "O", "O", "O"],
+  ["P", "O", "O", "O"],
+  ["O", "O", "O", "O"]
+]);
+</script>
