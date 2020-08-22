@@ -1,0 +1,22 @@
+<input type="text" id="frase1">
+<br>
+<input type="text" id="frase2">
+<br>
+<span id="resultado"></span>
+<script>
+    const frase1 = document.getElementById("frase1");
+    const frase2 = document.getElementById("frase2");
+
+    const checarRima = () => {
+      if( frase1.value.length && frase2.value.length ) {
+        if( frase1.value.slice(-2) == frase2.value.slice(-2) || frase1.value.slice(-4) == frase2.value.slice(-4) ) {
+          resultado.innerHTML = "Mandou bem na rima";
+        } else {
+          resultado.innerHTML = "Isso nem rima...";
+        }
+      }
+    }
+
+    frase1.onchange = checarRima;
+    frase2.onchange = checarRima;
+</script>
