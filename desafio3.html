@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .correto{
+        border: 1px solid green;
+      }
+      .errado{
+        border: 1px solid red;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script>
+      var myApp = angular.module('myApp', []).controller("myCtrl", ($scope) => {
+        $scope.escolherLetra = function() {
+          return String.fromCharCode((Math.random() * 25) + 65);
+        }
+        $scope.matriz = [
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+          ["","","","","","",""],
+        ];
+        $scope.letraAtual = $scope.escolherLetra();
+        $scope.mudarLetra = () => {
+          $scope.letraAtual = $scope.escolherLetra();
+        }
+        $scope.valorCorreto = (valor) => {
+          return valor.substring(0,1).toUpperCase() == $scope.letraAtual;
+        }
+      });
+    </script>
+  </head>
+  <body ng-app='myApp' ng-controller="myCtrl">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Cidade</th>
+          <th>Animal</th>
+          <th>Profissão</th>
+          <th>Fruta</th>
+          <th>Cor</th>
+          <th>País</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="array in matriz">
+          <td ng-repeat="valor in array track by $index">
+            <input type="text" ng-class="{correto: valorCorreto(array[$index]) && array[$index].length, errado: !valorCorreto(array[$index]) && array[$index].length}" ng-model="array[$index]">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <span>Letra atual: {{ letraAtual }}</span>
+    <br/>
+    <button ng-click="mudarLetra()">Mudar letra</button>
+  </body>
+</html>
