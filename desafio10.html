@@ -1,0 +1,31 @@
+String: <input type="text" id="string">
+<br/>
+Codificado: <input type="text" id="codificado" disabled>
+<script>
+  const inputString = document.getElementById("string");
+  const inputCodificado = document.getElementById("codificado");
+  const codificacao = {
+    '1':["i","I","í","Í"],
+    '2':["u","U"],
+    '3':["e","E","é","É"],
+    '4':["a","A","á","Á","à","À"],
+    '0':["o","O","ó","Ó"],
+  }
+
+  inputString.onchange = (evento) => {
+    inputCodificado.value = '';
+    let caractere;
+    for(var indiceString = 0; indiceString < inputString.value.length; indiceString++) {
+      caractere = '';
+      for(var codigo in codificacao){
+        if( codificacao[codigo].indexOf(inputString.value[indiceString]) != -1 ) {
+          caractere = codigo;
+        }
+      }
+      if( caractere == '' ) {
+        caractere = inputString.value[indiceString];
+      }
+      inputCodificado.value += caractere;
+    }
+  }
+</script>
