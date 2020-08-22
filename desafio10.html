@@ -1,0 +1,12 @@
+String: <input type="text" id="string">
+<span id="resultado"></span>
+<script>
+  const inputString = document.getElementById("string");
+  const resultado = document.getElementById("resultado");
+  inputString.onchange = (evento) => {
+    resultado.innerHTML = '';
+    for(let indiceString = 0; indiceString < inputString.value.length; indiceString++) {
+      resultado.innerHTML += inputString.value[indiceString].toUpperCase().charCodeAt() - 64;
+    }
+  };
+</script>
