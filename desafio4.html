@@ -1,0 +1,30 @@
+Centavos: <input type="text" id="centavos">
+<br/>
+R$: <input type="text" id="reais">
+<script>
+  const inputCentavos = document.getElementById("centavos");
+  const inputReais = document.getElementById("reais");
+  const validarValor = (valor) => {
+    let valor = parseFloat(evento.target.value);
+    if( isNaN(valor) ) {
+      alert("Valor inválido");
+      return false;
+    } else {
+      return valor;
+    }
+  }
+  inputCentavos.onchange = (evento) => {
+    let valor = validarValor(evento.target.value);
+    if( !valor ) {
+      return false;
+    }
+    inputReais.value = (valor / 100).toFixed(2);
+  }
+  inputReais.onchange = (evento) => {
+    let valor = validarValor(evento.target.value);
+    if( !valor ) {
+      return false;
+    }
+    inputCentavos.value = (valor * 100);
+  }
+</script>
