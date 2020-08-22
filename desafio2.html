@@ -1,0 +1,42 @@
+<span id="resultado"></span>
+<script>
+  const droneList = [
+    {
+      id: 1,
+      flightRange: 20
+    },
+    {
+      id: 2,
+      flightRange: 15
+    },
+    {
+      id: 3,
+      flightRange: 40
+    },
+    {
+      id: 4,
+      flightRange: 11
+    },
+    {
+      id: 5,
+      flightRange: 16
+    },
+    {
+      id: 6,
+      flightRange: 22
+    },
+    {
+      id: 9,
+      flightRange: 60
+    },
+  ]
+  const dronesManutencao = [2,5,6];
+  const resultado = document.getElementById("resultado");
+  const quantidadeDrones = 3;
+  const listaFiltradaOrdenada = droneList.filter((drone) => {
+    return dronesManutencao.indexOf(drone.id) == -1;
+  }).sort((a,b) => {
+    return b.flightRange - a.flightRange;
+  });
+  resultado.innerHTML = listaFiltradaOrdenada.slice(0, quantidadeDrones).map((drone) => drone.id).join(',');
+</script>
