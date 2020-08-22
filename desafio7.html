@@ -1,0 +1,7 @@
+<span id="resultado"></span>
+<script>
+  let telefone = 4494532345;
+  telefone = telefone.toString();
+  const resultado = document.getElementById("resultado");
+  resultado.innerHTML = `(${telefone.substring(0,2)}) ${telefone.substring(2, telefone.length - 4)}-${telefone.slice(-4)}`;
+</script>
