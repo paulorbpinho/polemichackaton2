@@ -6,7 +6,7 @@ Número: <input type="text" id="numero">
   inputNumero.onchange = (evento) => {
     let numero = parseFloat(evento.target.value);
     if( isNaN(numero) ){
-      alert('Numero invalido');
+      resultado.innerHTML = 'Numero invalido';
     }
     numero = numero.toFixed(0);
     let count = 0;
