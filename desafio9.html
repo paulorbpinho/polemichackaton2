@@ -1,0 +1,24 @@
+Número: <input type="text" id="numero">
+<span id="resultado"></span>
+<script>
+  const inputNumero = document.getElementById("numero");
+  const resultado = document.getElementById("resultado");
+  inputNumero.onchange = (evento) => {
+    let numero = parseFloat(evento.target.value);
+    if( isNaN(numero) ){
+      alert('Numero invalido');
+    }
+    numero = numero.toFixed(0);
+    let count = 0;
+    for(var i=2;i<numero;i++){
+      if( numero % i == 0 ){
+        count++;
+      }
+    }
+    if( count == 0 ) {
+      resultado.innerHTML = 'Primo';
+    } else {
+      resultado.innerHTML = 'Não é primo';
+    }
+  };
+</script>
