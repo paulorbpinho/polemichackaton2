@@ -9,7 +9,7 @@
 
     const checarRima = () => {
       if( frase1.value.length && frase2.value.length ) {
-        if( frase1.value.slice(-2) == frase2.value.slice(-2) || frase1.value.slice(-4) == frase2.value.slice(-4) ) {
+        if( frase1.value.slice(-2).toUpperCase() == frase2.value.slice(-2).toUpperCase() || frase1.value.slice(-4).toUpperCase() == frase2.value.slice(-4).toUpperCase() ) {
           resultado.innerHTML = "Mandou bem na rima";
         } else {
           resultado.innerHTML = "Isso nem rima...";
