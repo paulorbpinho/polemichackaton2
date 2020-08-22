@@ -1,0 +1,7 @@
+<span id="resultado"></span>
+<script>
+  const listaAlturas = [110,52,85,204,63,98];
+  const resultado = document.getElementById("resultado");
+  const listaOrdenada = listaAlturas.sort((a,b) => a-b);
+  resultado.innerHTML += listaOrdenada.join(',');
+</script>
