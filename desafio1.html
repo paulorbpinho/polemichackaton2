@@ -1,0 +1,64 @@
+<form id="form">
+  <input type="text" id="campoValor">
+  <input type="submit" value="Testar numero de cartao">
+</form>
+<script>
+  const inicioBandeira = {
+    "elo": [636368,438935,504175,451416,509048,509067, 509049,509069,509050,509074,509068,509040, 509045,509051,509046,509066,509047,509042, 509052,509043,509064,509040, 36297, 5067, 4576, 4011],
+    "mastercard": [51,52,53,54,55,222100,272099],
+    "amex": [34,37],
+    "discover": [6011,622,64,65],
+    "aura": [50],
+    "jcb": [35],
+    "hipercard": [60],
+    "diners": [301,302,303,304,305,36,38,5],
+    "visa": [4]
+  }
+  const ccModelo = {
+    responderSolicitacaoTeste: (evento) => {
+      var ccNumero = document.getElementById("campoValor").value;
+      if( ccModelo.numeroValido(ccNumero) ) {
+        alert(`${ccModelo.detectarTipo(ccNumero)} valido.`);
+      } else {
+        alert('invalido');
+      }
+      evento.preventDefault();
+    },
+    numeroValido: (ccNumero) => {
+      if( ccNumero.length < 12 || ccNumero.length > 19 ) {
+        return false;
+      }
+      let soma = 0;
+      let valorSomar;
+      let dobrarIndicesPares = ccNumero.length % 2;
+      for(var indiceCCNumero = ccNumero.length - 2; indiceCCNumero >= 0; indiceCCNumero--){
+        valorSomar = parseFloat(ccNumero[indiceCCNumero]);
+        if( isNaN(valorSomar) ) {
+          return false;
+        }
+        if( dobrarIndicesPares == indiceCCNumero % 2 ) {
+          valorSomar *= 2;
+        }
+        if( valorSomar > 9 ) {
+          valorSomar -= 9;
+        }
+        soma += valorSomar;
+      }
+      return parseFloat(ccNumero[ccNumero.length-1]) == (soma * 9) % 10;
+    },
+    detectarTipo: (ccNumero) => {
+      let valorTeste;
+      for(let ccTipo in inicioBandeira) {
+        for(let indiceValor = 0; indiceValor < inicioBandeira[ccTipo].length; indiceValor++) {
+          valorTeste = inicioBandeira[ccTipo][indiceValor];
+          if( ccNumero.substring(0, valorTeste.toString().length) == valorTeste.toString() ) {
+            return ccTipo;
+          }
+        }
+      }
+      return "Tipo desconhecido";
+    }
+  }
+  const form = document.getElementById("form");
+  form.onsubmit = ccModelo.responderSolicitacaoTeste;
+</script>
