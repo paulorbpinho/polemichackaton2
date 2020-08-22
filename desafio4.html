@@ -5,7 +5,7 @@ R$: <input type="text" id="reais">
   const inputCentavos = document.getElementById("centavos");
   const inputReais = document.getElementById("reais");
   const validarValor = (valor) => {
-    let valor = parseFloat(evento.target.value);
+    valor = parseFloat(valor.replace(',','.'));
     if( isNaN(valor) ) {
       alert("Valor inválido");
       return false;
@@ -25,6 +25,6 @@ R$: <input type="text" id="reais">
     if( !valor ) {
       return false;
     }
-    inputCentavos.value = (valor * 100);
+    inputCentavos.value = (valor * 100).toFixed(0);
   }
 </script>
