@@ -1,0 +1,40 @@
+Senha: <input type="password" id="password">
+<span id="resultado"></span>
+<script>
+  const criterios = [
+    new RegExp("[A-Z]"),
+    new RegExp("[a-z]"),
+    new RegExp("[0-9]"),
+    new RegExp("[^A-Za-z0-9]")
+  ];
+
+  const inputPassword = document.getElementById("password");
+  const resultado = document.getElementById("resultado");
+
+  inputPassword.onchange = function(evento) {
+    let criteriosAtendidos = 0;
+    for(var i=0;i<criterios.length;i++){
+      if(criterios[i].test(evento.target.value)){
+        criteriosAtendidos++;
+      }
+    }
+    if(evento.target.value.length < 8) {
+      resultado.innerHTML = "Senha fraca";
+      return true;
+    }
+    switch(criteriosAtendidos){
+      case 1:
+        resultado.innerHTML = "Senha fraca";
+        break;
+      case 2:
+        resultado.innerHTML = "Senha fraca";
+        break;
+      case 3:
+        resultado.innerHTML = "Senha media";
+        break;
+      case 4:
+        resultado.innerHTML = "Senha forte";
+        break;
+    }
+  }
+</script>
